@@ -13,13 +13,14 @@ class User {
 
     addBook(newbook){
          
-           if(this.borrowedBooks.includes(newbook)){
-              newbook.canBorrow = false;
-           }
-           if(newbook.canBorrow==true){
+          
+           if(newbook.canBorrow){
               this.borrowedBooks.push(newbook)
            }
-          
+
+          this.borrowedBooks.forEach((element) => {
+            return element.canBorrow = false;
+          });
 
       
 }
@@ -39,9 +40,11 @@ class Book{
 class Report{
   constructor(){
    this.users = [];
+   
   }
  
- 
+
+
   adduser(newuser){
     this.users.push(newuser)
   }
@@ -58,10 +61,11 @@ class Report{
 
 
 let user1 = new User('david','azulay','tel aviv');
-let user2 = new User("eli", "moshe", "tel aviv");
+let user2 = new User("shmuel", "rozental", "tel aviv");
 
 let book1 = new Book("lllll", "mmmm",false);
 let book2 = new Book('1984','gorge arwl',true);
+
 
 user1.addBook(book1)
 user1.addBook(book2)
